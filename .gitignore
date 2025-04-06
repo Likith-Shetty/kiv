@@ -1,0 +1,47 @@
+# PHP
+vendor/
+composer.lock
+*.log
+
+# Environment files
+.env
+config.php
+
+# IDE and Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# Cache and temporary files
+/cache/
+/tmp/
+*.tmp
+*.cache
+
+# Dependencies
+/node_modules/
+package-lock.json
+
+# Debug files
+error_log
+debug.log
+
+# Backup files
+*.bak
+*.backup

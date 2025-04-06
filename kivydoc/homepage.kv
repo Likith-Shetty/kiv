@@ -1,0 +1,169 @@
+<HomepageScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        # Scrollable Content
+        ScrollView:
+            do_scroll_x: False
+            BoxLayout:
+                orientation: 'vertical'
+                padding: dp(15)
+                spacing: dp(15)
+                size_hint_y: None
+                height: self.minimum_height
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+                # Welcome Text
+                Label:
+                    text: "Welcome back, Dr. Saanj"
+                    font_size: '24sp'
+                    bold: True
+                    size_hint_y: None
+                    height: dp(40)
+                    color: 0.02, 0.1, 0.4, 1
+
+
+
+                # Heading: "Book an Appointment"
+                Label:
+                    text: "Block Unavailable Dates"
+                    font_size: '20sp'
+                    bold: True
+                    size_hint_y: None
+                    height: dp(40)
+                    color: 0.1, 0.1, 0.5, 1
+                    halign: 'center'
+
+                # Calendar Header (Month and Year)
+                BoxLayout:
+                    size_hint_y: None
+                    height: dp(50)
+                    spacing: dp(10)
+                    padding: dp(10)
+
+                    Button:
+                        text: '<'
+                        size_hint_x: None
+                        width: dp(40)
+                        on_press: root.prev_month()
+
+                    Label:
+                        id: month_year
+                        text: "March Year"  # Example month
+                        font_size: '18sp'
+                        bold: True
+                        halign: 'center'
+                        color: 0, 0, 0, 1
+
+                    Button:
+                        text: '>'
+                        size_hint_x: None
+                        width: dp(40)
+                        on_press: root.next_month()
+
+                # Calendar Grid (7 Columns, 5-6 Rows)
+                GridLayout:
+                    id: calendar_grid
+                    cols: 7
+                    spacing: dp(2)
+                    padding: dp(5)
+                    size_hint_y: None
+                    height: dp(300)
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+
+                # Available Time Slots (Initially Hidden)
+                BoxLayout:
+                    id: time_container
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: 0
+                    opacity: 0
+                    padding: dp(10)
+
+                    Label:
+                        text: "Available Time Slots"
+                        font_size: '18sp'
+                        bold: True
+                        size_hint_y: None
+                        height: dp(30)
+                        color: 0.1, 0.1, 0.5, 1
+                        halign: 'center'
+
+
+                    GridLayout:
+                        id: time_layout
+                        cols: 3
+                        spacing: dp(10)
+                        padding: dp(10)
+                        size_hint_y: None
+                        height: self.minimum_height
+
+        # FIXED NAVIGATION BAR
+        MDFloatLayout:
+            size_hint_y: None
+            height: dp(80)
+            md_bg_color: 0.02, 0.1, 0.4, 1
+            pos_hint: {"x": 0, "y": 0}
+            canvas.before:
+                Color:
+                    rgba: self.md_bg_color
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [50, 50, 0, 0]
+
+            MDIconButton:
+                icon: "home"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                pos_hint: {"center_x": 0.2, "center_y": 0.6}
+                on_press: app.switch_screen('home')
+
+            MDLabel:
+                text: "Home"
+                font_size: sp(10)
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                halign: "center"
+                pos_hint: {"center_x": 0.2, "center_y": 0.3}
+
+            MDIconButton:
+                icon: "calendar"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                pos_hint: {"center_x": 0.5, "center_y": 0.6}
+                on_press: app.switch_screen('appointment')
+
+            MDLabel:
+                text: "Appointments"
+                font_size: sp(10)
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                halign: "center"
+                pos_hint: {"center_x": 0.5, "center_y": 0.3}
+
+
+            MDIconButton:
+                icon: "account"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                pos_hint: {"center_x": 0.8, "center_y": 0.6}
+                on_press: app.switch_screen('profile')
+
+            MDLabel:
+                text: "Profile"
+                font_size: sp(10)
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                halign: "center"
+                pos_hint: {"center_x": 0.8, "center_y": 0.3}

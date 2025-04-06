@@ -1,0 +1,147 @@
+<AppointmentScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        # Scrollable Content
+        ScrollView:
+            do_scroll_x: False
+            BoxLayout:
+                orientation: 'vertical'
+                padding: dp(15)
+                spacing: dp(15)
+                size_hint_y: None
+                height: self.minimum_height
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+                # Welcome Text
+                Label:
+                    text: "Check your appointments"
+                    font_size: '24sp'
+                    bold: True
+                    size_hint_y: None
+                    height: dp(40)
+                    color: 0.02, 0.1, 0.4, 1
+
+                # Filter Section
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: dp(10)
+                    size_hint_y: None
+                    height: dp(50)
+
+                    # Month Filter
+                    Spinner:
+                        id: month_spinner
+                        text: "Month"
+                        values: app.months
+                        size_hint_x: 0.33
+                        background_color: (0.02, 0.1, 0.4, 1)
+                        background_normal: ''
+                        canvas.before:
+                            Color:
+                                rgba: (0.87, 0.96, 1, 1)  # Light Blue
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [10, 10, 10, 10]
+                        on_text: app.update_appointments_by_filter()
+
+                    # Date Filter
+                    Spinner:
+                        id: date_spinner
+                        text: "Date"
+                        values: [str(i) for i in range(1, 32)]
+                        size_hint_x: 0.33
+                        background_color: (0.02, 0.1, 0.4, 1)
+                        background_normal: ''
+                        canvas.before:
+                            Color:
+                                rgba: (0.87, 0.96, 1, 1)
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [10, 10, 10, 10]
+                        on_text: app.update_appointments_by_filter()
+
+                    # Year Filter
+                    Spinner:
+                        id: year_spinner
+                        text: "Year"
+                        values: [str(i) for i in range(2025, 2035)]
+                        size_hint_x: 0.33
+                        background_color: (0.02, 0.1, 0.4, 1)
+                        background_normal: ''
+                        canvas.before:
+                            Color:
+                                rgba: (0.87, 0.96, 1, 1)
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [10, 10, 10, 10]
+                        on_text: app.update_appointments_by_filter()
+
+
+        # FIXED NAVIGATION BAR
+        MDFloatLayout:
+            size_hint_y: None
+            height: dp(80)
+            md_bg_color: 0.02, 0.1, 0.4, 1
+            pos_hint: {"x": 0, "y": 0}
+            canvas.before:
+                Color:
+                    rgba: self.md_bg_color
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [50, 50, 0, 0]
+
+            MDIconButton:
+                icon: "home"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                pos_hint: {"center_x": 0.2, "center_y": 0.6}
+                on_press: app.switch_screen('home')
+
+            MDLabel:
+                text: "Home"
+                font_size: sp(10)
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                halign: "center"
+                pos_hint: {"center_x": 0.2, "center_y": 0.3}
+
+            MDIconButton:
+                icon: "calendar"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                pos_hint: {"center_x": 0.5, "center_y": 0.6}
+                on_press: app.switch_screen('appointment')
+
+            MDLabel:
+                text: "Appointments"
+                font_size: sp(10)
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                halign: "center"
+                pos_hint: {"center_x": 0.5, "center_y": 0.3}
+
+
+            MDIconButton:
+                icon: "account"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                pos_hint: {"center_x": 0.8, "center_y": 0.6}
+                on_press: app.switch_screen('profile')
+
+            MDLabel:
+                text: "Profile"
+                font_size: sp(10)
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                halign: "center"
+                pos_hint: {"center_x": 0.8, "center_y": 0.3}
