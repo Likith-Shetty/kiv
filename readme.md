@@ -23,8 +23,8 @@ A complete web-based user registration system with secure authentication and use
 
 1. **Clone the Repository**
    ```bash
-   git clone <your-repository-url>
-   cd <project-directory>
+   git clone https://github.com/Likith-Shetty/kiv.git
+   cd kivydoc
    ```
 
 2. **Database Setup**
